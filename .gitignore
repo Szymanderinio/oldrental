@@ -1,0 +1,4 @@
+
+*.pyc
+.DS_Store
+oldrental/migrations/0002_auto_20210517_2115.py
