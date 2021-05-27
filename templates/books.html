@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/books.css' %}">
+
+        <title>Books</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/" class = "page-header">Django Girls Blog</a></h1>
+        </div>
+
+
+
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for book in books %}
+                        <div class="book">
+                            <div class="author">
+                                <p>Author: {{ book.author }}</p>
+                                <p>title: {{ book.title }}</p>
+                            </div>
+                            <h6><a href="">isbn: {{ book.isbn }}</a></h6>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
