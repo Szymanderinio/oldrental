@@ -5,10 +5,12 @@
         <div class="book">
             <div class="author">
                 <p>Author: {{ book.author }}</p>
-                <p>title: {{ book.title }}</p>
+
+
+                <p>title: <a href="{% url 'books_detail' pk=book.pk %}">{{ book.title }}</a></p>
             </div>
             <h6><a href="">isbn: {{ book.isbn }}</a></h6>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p>{{ book.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
 {% endblock %}

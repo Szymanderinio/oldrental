@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="book">
+        {% if book.author %}
+            <div class="author">
+                <p>Author: {{ book.author }}</p>
+            </div>
+        {% endif %}
+        <h2 style="color: #444;">{{ book.title }}</h2>
+        <h6><a href="">isbn: {{ book.isbn }}</a></h6>
+        <p>{{ book.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
