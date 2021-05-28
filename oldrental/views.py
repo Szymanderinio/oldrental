@@ -44,3 +44,17 @@ def book_edit(request, pk):
     else:
         book = BookForm(instance=book)
     return render(request, 'book_edit.html', {'book': book})
+
+
+def rentMe(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    book.rent(request.user)
+    book.save()
+    return render(request, 'book_detail.html', {'book': book})
+
+
+def unRentMe(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    book.unrent()
+    book.save()
+    return render(request, 'book_detail.html', {'book': book})

@@ -27,10 +27,8 @@ class Book(models.Model):
         self.rent_date = datetime.now()
 
     def unrent(self):
-        pass
-
-    def get_absolute_url(self):
-        return reverse('books:details', args=[self.pk])
+        self.user_rentier = None
+        self.rent_date = None
 
     class Meta:
         unique_together = ('author', 'title', 'genre')

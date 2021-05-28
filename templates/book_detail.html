@@ -2,16 +2,29 @@
 
 {% block content %}
     <div class="book">
-        {% if book.author %}
-            <div class="author">
+        <div class="author">
                 <p>Author: {{ book.author }}</p>
-            </div>
-        {% endif %}
-        {% if user.is_superuser %}
+        </div>
+        {% if user.is_superuser or book.user_rentier == user %}
         <a class="btn btn-default" href="{% url 'book_edit' pk=book.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
         <h2 style="color: #444;">{{ book.title }}</h2>
         <h6><a href="">isbn: {{ book.isbn }}</a></h6>
         <p>{{ book.text|linebreaksbr }}</p>
+        {% if book.user_rentier == None %}
+        <form action='{% url 'book_rent' pk=book.pk %}' method='POST'>
+            {% csrf_token %}
+            <button type='submit'>Rent Me</button>
+        </form>
+        {% else %}
+            <h6 style="color:#444">Currently rented by <b>{{ book.user_rentier.username }}</b></h6>
+            {% if user.is_superuser or book.user_rentier == user %}
+                <form action='{% url 'book_unrent' pk=book.pk %}' method='POST'>
+            {% csrf_token %}
+            <button type='submit'>Return Me</button>
+        </form>
+            {% endif %}
+        {% endif %}
+
     </div>
 {% endblock %}
