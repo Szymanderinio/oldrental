@@ -7,8 +7,9 @@
                 <p>Author: {{ book.author }}</p>
             </div>
         {% endif %}
+        {% if user.is_superuser %}
         <a class="btn btn-default" href="{% url 'book_edit' pk=book.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-
+        {% endif %}
         <h2 style="color: #444;">{{ book.title }}</h2>
         <h6><a href="">isbn: {{ book.isbn }}</a></h6>
         <p>{{ book.text|linebreaksbr }}</p>
