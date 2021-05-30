@@ -33,3 +33,5 @@ class Book(models.Model):
     class Meta:
         unique_together = ('author', 'title', 'genre')
         ordering = ('title',)
+
+

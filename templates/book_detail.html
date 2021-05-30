@@ -5,8 +5,10 @@
         <div class="author">
                 <p>Author: {{ book.author }}</p>
         </div>
-        {% if user.is_superuser or book.user_rentier == user %}
+        {% if user.is_superuser %}
         <a class="btn btn-default" href="{% url 'book_edit' pk=book.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'book_remove' pk=book.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
         {% endif %}
         <h2 style="color: #444;">{{ book.title }}</h2>
         <h6><a href="">isbn: {{ book.isbn }}</a></h6>
