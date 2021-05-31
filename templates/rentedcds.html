@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <a href="{% url 'cd_new' %}">Add<span class="glyphicon glyphicon-plus"></span></a>
+        <br><br>
+    {% endif %}
+    {% for cd in rentedcds %}
+
+        <div class="book">
+                <h3>RENT INFO:</h3>
+                <p><b>From:</b> {{ cd.date_from }}</p>
+                <p><b>To:</b> {{ cd.date_to }}</p>
+                <p><b>By:</b> {{ cd.user.username }}</p>
+            <hr>
+            <div class="author">
+                <p><b>Band:</b> {{ cd.cd.band }}</p>
+                <p><b>Title:</b> {{ cd.cd.title }}</p>
+            </div>
+            <p>{{ cd.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
