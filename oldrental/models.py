@@ -27,11 +27,28 @@ class Book(models.Model):
         self.rent_date = datetime.now()
 
     def unrent(self):
-        pass
-
-    def get_absolute_url(self):
-        return reverse('books:details', args=[self.pk])
+        RentedBook.objects.create(book=self, user=self.user_rentier, date_from=self.rent_date)
+        self.user_rentier = None
+        self.rent_date = None
 
     class Meta:
         unique_together = ('author', 'title', 'genre')
         ordering = ('title',)
+
+
+class RentedBook(models.Model):
+    book = models.ForeignKey(Book, related_name='old_rents', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_from = models.DateTimeField(datetime)
+    date_to = models.DateTimeField(default=datetime.now())
+
+
+
+
+
+
+
+
+
+
+

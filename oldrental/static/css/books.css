@@ -16,7 +16,7 @@
 
 h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
-        color: #ffffff;
+        color: #444;
 }
 
 .date {
@@ -44,4 +44,16 @@ h1, h2, h3, h4 {
 
 .book h2 a, .book h1 a:visited {
     color: #000000;
+}
+
+body {
+    color: #444;
+}
+
+.book {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #444;
+  justify-content: space-between;
+    padding: 15px;
 }

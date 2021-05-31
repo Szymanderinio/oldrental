@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <a href="{% url 'book_new' %}">Add<span class="glyphicon glyphicon-plus"></span></a>
+        <br><br>
+    {% endif %}
+    {% for book in rentedbooks %}
+
+        <div class="book">
+                <h3>RENT INFO:</h3>
+                <p><b>From:</b> {{ book.date_from }}</p>
+                <p><b>To:</b> {{ book.date_to }}</p>
+                <p><b>By:</b> {{ book.user.username }}</p>
+            <hr color="black">
+            <div class="author">
+                <p><b>Author:</b> {{ book.book.author }}</p>
+                <p><b>Title:</b> {{ book.book.title }}</p>
+            </div>
+            <p><b>ISBN:</b> {{ book.book.isbn }}</p>
+            <p>{{ book.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
