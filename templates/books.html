@@ -9,15 +9,12 @@
         <input type="submit" class="btn btn-secondary" value="Rent History"/>
     </form> <br>
     {% for book in books %}
-
         <div class="book">
             <div class="author">
-                <p>Author: {{ book.author }}</p>
-
-
-                <p>title: <a href="{% url 'books_detail' pk=book.pk %}">{{ book.title }}</a></p>
+                <p><b>Author:</b> {{ book.author }}</p>
+                <p><b>Title:</b> <a href="{% url 'books_detail' pk=book.pk %}">{{ book.title }}</a></p>
             </div>
-            <h6>isbn: {{ book.isbn }}</h6>
+            <p><b>ISBN:</b> {{ book.isbn }}</p>
             <p>{{ book.text|linebreaksbr }}</p>
         </div>
     {% endfor %}

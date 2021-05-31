@@ -77,13 +77,6 @@ class BookRemove(View):
 
 class RentedBookView(View):
     def get(self, request):
-        rentedbooks = RentedBook.objects.filter().order_by('date_to')
+        rentedbooks = RentedBook.objects.filter().order_by('-date_to')
         return render(request, 'rentedbooks.html', {'rentedbooks': rentedbooks})
 
-
-        # if request.user.is_authenticated:
-        #     book.rent(request.user)
-        #     book.save()
-        #     return render(request, 'book_detail.html', {'book': book})
-        # else:
-        #     return redirect('home')

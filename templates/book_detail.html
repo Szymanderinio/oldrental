@@ -10,13 +10,15 @@
         <a class="btn btn-default" href="{% url 'book_remove' pk=book.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
 
         {% endif %}
+
         <h2 style="color: #444;">{{ book.title }}</h2>
-        <h6><a href="">isbn: {{ book.isbn }}</a></h6>
+            <p><b>ISBN:</b> {{ book.isbn }}</p>
         <p>{{ book.text|linebreaksbr }}</p>
+
         {% if book.user_rentier == None %}
         <form action='{% url 'book_rent' pk=book.pk %}' method='POST'>
             {% csrf_token %}
-            <button type='submit'>Rent Me</button>
+            <button type='submit' class="btn btn-secondary">Rent Me</button>
         </form>
         {% else %}
             <h6 style="color:#444">Currently rented by <b>{{ book.user_rentier.username }}</b></h6>

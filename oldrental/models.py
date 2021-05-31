@@ -46,3 +46,9 @@ class RentedBook(models.Model):
 
 
 
+
+
+
+
+
+
