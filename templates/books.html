@@ -5,6 +5,9 @@
         <a href="{% url 'book_new' %}">Add<span class="glyphicon glyphicon-plus"></span></a>
         <br><br>
     {% endif %}
+    <form action = "{% url 'rentedbooks' %}">
+        <input type="submit" class="btn btn-secondary" value="Rent History"/>
+    </form> <br>
     {% for book in books %}
 
         <div class="book">
@@ -14,7 +17,7 @@
 
                 <p>title: <a href="{% url 'books_detail' pk=book.pk %}">{{ book.title }}</a></p>
             </div>
-            <h6><a href="">isbn: {{ book.isbn }}</a></h6>
+            <h6>isbn: {{ book.isbn }}</h6>
             <p>{{ book.text|linebreaksbr }}</p>
         </div>
     {% endfor %}

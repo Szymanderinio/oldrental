@@ -54,5 +54,6 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: #444;
-    border-spacing: 2px;
+  justify-content: space-between;
+    padding-left: 20px;
 }
