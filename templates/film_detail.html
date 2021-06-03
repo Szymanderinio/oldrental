@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="book">
+        <div class="author">
+                <p>Director: {{ film.director }}</p>
+        </div>
+        {% if user.is_superuser %}
+        <a class="btn btn-default" href="{% url 'film_edit' pk=film.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'film_remove' pk=film.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+        {% endif %}
+
+        <h2 style="color: #444;">{{ film.title }}</h2>
+            <p><b>Genre:</b> {{ film.genre }}</p>
+        <p>{{ book.text|linebreaksbr }}</p>
+
+        {% if film.userfilm_rentier == None %}
+        <form action='{% url 'film_rent' pk=film.pk %}' method='POST'>
+            {% csrf_token %}
+            <button type='submit' class="btn btn-secondary">Rent Me</button>
+        </form>
+        {% else %}
+            <h6 style="color:#444">Currently rented by <b>{{ film.userfilm_rentier.username }}</b></h6>
+            {% if user.is_superuser or film.userfilm_rentier == user %}
+                <form action='{% url 'film_unrent' pk=film.pk %}' method='POST'>
+            {% csrf_token %}
+            <button type='submit' class="btn btn-secondary">Return Me</button>
+        </form>
+            {% endif %}
+        {% endif %}
+
+
+    </div>
+{% endblock %}

@@ -21,6 +21,11 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('books/', include('oldrental.urls')),
+<<<<<<< Updated upstream
+=======
+    path('cds/', include('cds.urls')),
+    path('films/', include('films.urls')),
+>>>>>>> Stashed changes
     path('admin/', admin.site.urls),
 
 ]

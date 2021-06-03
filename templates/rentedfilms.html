@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <a href="{% url 'film_new' %}">Add<span class="glyphicon glyphicon-plus"></span></a>
+        <br><br>
+    {% endif %}
+    {% for film in rentedfilms %}
+
+        <div class="book">
+                <h3>RENT INFO:</h3>
+                <p><b>From:</b> {{ film.date_from }}</p>
+                <p><b>To:</b> {{ film.date_to }}</p>
+                <p><b>By:</b> {{ film.user.username }}</p>
+            <hr>
+            <div class="author">
+                <p><b>Director:</b> {{ film.film.director }}</p>
+                <p><b>Title:</b> {{ film.film.title }}</p>
+            </div>
+            <p>{{ film.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
