@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.contrib import admin
+
+admin.autodiscover()
 
 urlpatterns = [
     path('', views.BookView.as_view(), name='books'),

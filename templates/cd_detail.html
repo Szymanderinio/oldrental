@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="book">
+        <div class="author">
+                <p>Band: {{ cd.band }}</p>
+        </div>
+        {% if user.is_superuser %}
+        <a class="btn btn-default" href="{% url 'cd_edit' pk=cd.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'cd_remove' pk=cd.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+        {% endif %}
+
+        <h2 style="color: #444;">{{ cd.title }}</h2>
+            <p><b>Genre:</b> {{ cd.genre }}</p>
+        <p>{{ book.text|linebreaksbr }}</p>
+
+        {% if cd.usercd_rentier == None %}
+        <form action='{% url 'cd_rent' pk=cd.pk %}' method='POST'>
+            {% csrf_token %}
+            <button type='submit' class="btn btn-secondary">Rent Me</button>
+        </form>
+        {% else %}
+            <h6 style="color:#444">Currently rented by <b>{{ cd.usercd_rentier.username }}</b></h6>
+            {% if user.is_superuser or cd.usercd_rentier == user %}
+                <form action='{% url 'cd_unrent' pk=cd.pk %}' method='POST'>
+            {% csrf_token %}
+            <button type='submit' class="btn btn-secondary">Return Me</button>
+        </form>
+            {% endif %}
+        {% endif %}
+
+
+    </div>
+{% endblock %}

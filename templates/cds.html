@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <a href="{% url 'cd_new' %}">Add<span class="glyphicon glyphicon-plus"></span></a>
+        <br><br>
+    {% endif %}
+    <form action = "{% url 'rentedcds'  %}">
+        <input type="submit" class="btn btn-secondary" value="Rent History"/>
+    </form> <br>
+    {% for cd in cds %}
+        <div class="book">
+            <div class="author">
+                <p><b>Band:</b> {{ cd.band }}</p>
+                <p><b>Title:</b> <a href= "{% url 'cd_detail' pk=cd.pk %}">{{ cd.title }}</a></p>
+            </div>
+            <p><b>Genre:</b> {{ cd.genre }}</p>
+            <p><b>Time:</b> {{ cd.time }}</p>
+            <p>{{ cd.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
