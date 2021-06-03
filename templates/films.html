@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <a href="{% url 'film_new' %}">Add<span class="glyphicon glyphicon-plus"></span></a>
+        <br><br>
+    {% endif %}
+    <form action = "{% url 'rentedfilms'  %}">
+        <input type="submit" class="btn btn-secondary" value="Rent History"/>
+    </form> <br>
+    {% for film in films %}
+        <div class="book">
+            <div class="author">
+                <p><b>Director:</b> {{ film.director }}</p>
+                <p><b>Title:</b> <a href= "{% url 'film_detail' pk=film.pk %}">{{ film.title }}</a></p>
+            </div>
+            <p><b>Genre:</b> {{ film.genre }}</p>
+            <p><b>Time:</b> {{ film.time }}</p>
+            <p>{{ film.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
