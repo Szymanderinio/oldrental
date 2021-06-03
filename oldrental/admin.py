@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Genre, Book, RentedBook
 from cds.models import CD, CDGenre, Song, RentedCD
 from films.models import Film, FilmGenre, RentedFilm
@@ -17,4 +16,3 @@ admin.site.register(RentedCD)
 admin.site.register(Film)
 admin.site.register(FilmGenre)
 admin.site.register(RentedFilm)
-

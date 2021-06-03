@@ -2,7 +2,6 @@ from django.db import models
 from datetime import datetime
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
-from django.urls import reverse
 
 
 class Genre(models.Model):

@@ -25,7 +25,7 @@
             {% if user.is_superuser or book.user_rentier == user %}
                 <form action='{% url 'book_unrent' pk=book.pk %}' method='POST'>
             {% csrf_token %}
-            <button type='submit'>Return Me</button>
+            <button type='submit' class="btn btn-secondary">Return Me</button>
         </form>
             {% endif %}
         {% endif %}

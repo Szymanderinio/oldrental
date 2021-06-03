@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
 from django.views import View
 
 from .models import Book, RentedBook
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import BookForm
 
 # Create your views here.
