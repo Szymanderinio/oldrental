@@ -33,6 +33,7 @@ class Film(models.Model):
         self.rent_date = None
 
     class Meta:
+        unique_together = ('title', 'director', 'time')
         ordering = ('title',)
 
 
